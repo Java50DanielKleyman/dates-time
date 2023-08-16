@@ -30,7 +30,7 @@ class TemporalTests {
 		ChronoUnit unit = ChronoUnit.MONTHS;
 		System.out.printf("Number of %s between %s and %s is %d\n", unit, birthDateAS, barMizvaAS,
 				unit.between(birthDateAS, barMizvaAS));
-		
+
 	}
 
 	@Test
@@ -39,8 +39,9 @@ class TemporalTests {
 		LocalDateTime ldt = LocalDateTime.of(2000, 1, 1, 0, 0);// do not use localdate in HW
 		LocalDateTime expected = LocalDateTime.of(2013, 1, 1, 0, 0);
 		assertEquals(expected, ldt.with(new BarMizvaAdjuster()));
-		assertThrowsExactly(UnsupportedTemporalTypeException.class, ()-> LocalTime.now().with(adjuster));
+		assertThrowsExactly(UnsupportedTemporalTypeException.class, () -> LocalTime.now().with(adjuster));
 	}
+
 	@Test
 	void nextFridayAdjusterTest() {
 		TemporalAdjuster adjuster = new NextFriday13();
@@ -48,7 +49,8 @@ class TemporalTests {
 		LocalDate expected1 = LocalDate.of(2023, 10, 13);
 		LocalDate expected2 = LocalDate.of(2024, 9, 13);
 		assertEquals(expected1, ld.with(adjuster));
-		assertThrowsExactly(UnsupportedTemporalTypeException.class, ()-> LocalTime.now().with(adjuster));
+		assertThrowsExactly(UnsupportedTemporalTypeException.class, () -> LocalTime.now().with(adjuster));
 		assertEquals(expected2, expected1.with(adjuster));
 	}
+
 }
