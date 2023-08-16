@@ -47,8 +47,8 @@ class TemporalTests {
 		LocalDate ld = LocalDate.of(2023, 8, 15);
 		LocalDate expected1 = LocalDate.of(2023, 10, 13);
 		LocalDate expected2 = LocalDate.of(2024, 9, 13);
-//		assertEquals(expected1, ld.with(adjuster));
-//		assertThrowsExactly(UnsupportedTemporalTypeException.class, ()-> LocalTime.now().with(adjuster));
+		assertEquals(expected1, ld.with(adjuster));
+		assertThrowsExactly(UnsupportedTemporalTypeException.class, ()-> LocalTime.now().with(adjuster));
 		assertEquals(expected2, expected1.with(adjuster));
 	}
 }
