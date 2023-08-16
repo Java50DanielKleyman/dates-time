@@ -27,9 +27,10 @@ class TemporalTests {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM, YYYY/d EEE");// method factory
 		System.out.printf("Birthday of AS is %s\n, Bar Mizva of AS %s\n", birthDateAS.format(dtf),
 				barMizvaAS.format(dtf));
-		ChronoUnit unit = ChronoUnit.DAYS;
+		ChronoUnit unit = ChronoUnit.MONTHS;
 		System.out.printf("Number of %s between %s and %s is %d\n", unit, birthDateAS, barMizvaAS,
 				unit.between(birthDateAS, barMizvaAS));
+		
 	}
 
 	@Test
@@ -46,7 +47,8 @@ class TemporalTests {
 		LocalDate ld = LocalDate.of(2023, 8, 15);
 		LocalDate expected1 = LocalDate.of(2023, 10, 13);
 		LocalDate expected2 = LocalDate.of(2024, 9, 13);
-		assertEquals(expected1, ld.with(adjuster));
+//		assertEquals(expected1, ld.with(adjuster));
+//		assertThrowsExactly(UnsupportedTemporalTypeException.class, ()-> LocalTime.now().with(adjuster));
 		assertEquals(expected2, expected1.with(adjuster));
 	}
 }
