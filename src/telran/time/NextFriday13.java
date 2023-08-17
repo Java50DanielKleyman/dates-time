@@ -22,9 +22,7 @@ public class NextFriday13 implements TemporalAdjuster {
 		do {
 			temporal = temporal.plus(1, ChronoUnit.DAYS);
 		} while (temporal.get(ChronoField.DAY_OF_MONTH) != 13);
-		if (temporal.get(ChronoField.DAY_OF_WEEK) == 5) {
-			return temporal;
-		} else {
+		if (temporal.get(ChronoField.DAY_OF_WEEK) != 5) {
 			temporal = monthPlus(temporal);
 		}
 
