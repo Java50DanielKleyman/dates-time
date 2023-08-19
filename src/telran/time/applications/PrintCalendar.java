@@ -40,7 +40,6 @@ public class PrintCalendar {
 		System.out.printf("%s", " ".repeat(getFirstColumnOffset(currentWeekDay)));
 		for (int day = 1; day <= nDays; day++) {
 			System.out.printf("%4d", day);
-
 			if (currentWeekDay == 7) {
 				currentWeekDay = 0;
 				System.out.println();
