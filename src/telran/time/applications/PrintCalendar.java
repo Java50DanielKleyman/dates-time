@@ -29,14 +29,19 @@ public class PrintCalendar {
 	private static void printCalendar(RecordArguments recordArguments) {
 		printTitle(recordArguments.month(), recordArguments.year());
 		printWeekDays(recordArguments.firstDay());
-		printDays(recordArguments.month(), recordArguments.year());
+		printDays(recordArguments.month(), recordArguments.year(), recordArguments.firstDay());
 
 	}
 
-	private static void printDays(int month, int year) {
-
+	private static void printDays(int month, int year, DayOfWeek dayOfWeek) {
+		int firstDayOfWeek = dayOfWeek.getValue();
 		int nDays = getMonthDays(month, year);
-		int currentWeekDay = getFirstMonthWeekDay(month, year) + 1;
+		int currentWeekDay = getFirstMonthWeekDay(month, year);
+		int correctionValue = currentWeekDay - firstDayOfWeek - 1;
+		if (correctionValue < 0) {
+			correctionValue += 7;
+		}
+		currentWeekDay += correctionValue;
 		System.out.printf("%s", " ".repeat(getFirstColumnOffset(currentWeekDay)));
 		for (int day = 1; day <= nDays; day++) {
 			System.out.printf("%4d", day);
