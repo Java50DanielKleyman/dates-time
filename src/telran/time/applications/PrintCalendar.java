@@ -81,25 +81,18 @@ public class PrintCalendar {
 
 	private static DayOfWeek[] newWeekDaysOrder(DayOfWeek firstDayOfWeek) {
 		DayOfWeek[] newWeekDays = new DayOfWeek[weekDays.length];
-		DayOfWeek[] tmp = new DayOfWeek[weekDays.length];
 		boolean reverseOrder = false;
 		int index = 0;
 		for (int i = 0; i < weekDays.length; i++) {
 			if (weekDays[i] == firstDayOfWeek) {
 				reverseOrder = true;
 			}
-			if (!reverseOrder) {
-				tmp[i] = weekDays[i];
-			} else {
-				newWeekDays[index] = weekDays[i];
-				index++;
+			if (reverseOrder) {
+				newWeekDays[index++] = weekDays[i];
 			}
 		}
-		int i = 0;
-		while (tmp[i] != null) {
-			newWeekDays[index] = tmp[i];
-			index++;
-			i++;
+		for (int i = 0; index < newWeekDays.length; i++) {
+			newWeekDays[index++] = weekDays[i];
 		}
 		return newWeekDays;
 	}
