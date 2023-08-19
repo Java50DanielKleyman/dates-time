@@ -4,6 +4,8 @@ import java.time.*;
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 public class PrintCalendar {
@@ -80,6 +82,9 @@ public class PrintCalendar {
 	}
 
 	private static DayOfWeek[] newWeekDaysOrder(DayOfWeek firstDayOfWeek) {
+		if (weekDays[0] == firstDayOfWeek) {
+			return weekDays;
+		}
 		DayOfWeek[] newWeekDays = new DayOfWeek[weekDays.length];
 		boolean reverseOrder = false;
 		int index = 0;
