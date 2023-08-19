@@ -77,6 +77,7 @@ public class PrintCalendar {
 
 	private static DayOfWeek[] newWeekDaysOrder(DayOfWeek firstDayOfWeek) {
 		DayOfWeek[] newWeekDays = new DayOfWeek[weekDays.length];
+		DayOfWeek[] tmp = new DayOfWeek[weekDays.length];
 		boolean reverseOrder = false;
 		int index = 0;
 		for (int i = 0; i < weekDays.length; i++) {
@@ -84,11 +85,17 @@ public class PrintCalendar {
 				reverseOrder = true;
 			}
 			if (!reverseOrder) {
-				newWeekDays[weekDays.length - 1 - i] = weekDays[i];
+				tmp[i] = weekDays[i];
 			} else {
 				newWeekDays[index] = weekDays[i];
 				index++;
 			}
+		}
+		int i = 0;
+		while (tmp[i] != null) {
+			newWeekDays[index] = tmp[i];
+			index++;
+			i++;
 		}
 		return newWeekDays;
 	}
