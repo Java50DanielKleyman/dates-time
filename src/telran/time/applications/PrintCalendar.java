@@ -39,26 +39,25 @@ public class PrintCalendar {
 		int firstDayOfWeek = dayOfWeek.getValue();
 		int nDays = getMonthDays(month, year);
 		int currentWeekDay = getFirstMonthWeekDay(month, year);
-		int correctionValue = currentWeekDay - firstDayOfWeek - 1;
-		if (correctionValue < 0) {
-			correctionValue += 7;
+
+		currentWeekDay = currentWeekDay - firstDayOfWeek;
+		if (currentWeekDay < 0) {
+			currentWeekDay += 7;
 		}
-		currentWeekDay += correctionValue;
 		System.out.printf("%s", " ".repeat(getFirstColumnOffset(currentWeekDay)));
 		for (int day = 1; day <= nDays; day++) {
 			System.out.printf("%4d", day);
+			currentWeekDay++;
 			if (currentWeekDay == 7) {
 				currentWeekDay = 0;
 				System.out.println();
 			}
-			currentWeekDay++;
 		}
-
 	}
 
 	private static int getFirstColumnOffset(int currentWeekDay) {
 
-		return COLUMN_WIDTH * (currentWeekDay - 1);
+		return COLUMN_WIDTH * (currentWeekDay);
 	}
 
 	private static int getFirstMonthWeekDay(int month, int year) {
